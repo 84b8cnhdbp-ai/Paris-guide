@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Paris Trip & NFL Gameday</title>
+<style>
+  @page {
+    size: A4;
+    margin: 8mm 10mm 8mm 10mm;
+    background-color: #f8fafc;
+    @bottom-center {
+      content: "Paris Weekend & NFL Gameday · Offline Guide · Seite " counter(page) " / " counter(pages);
+      font-size: 7.5pt;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #94a3b8;
+    }
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    font-size: 8.5pt;
+    line-height: 1.35;
+  }
+
+  /* Web-App Mobile Styling */
+  @media screen {
+    html, body {
+      background-color: #0f172a;
+    }
+    .app-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #f8fafc;
+      min-height: 100vh;
+      padding: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+  }
+  @media print {
+    .app-wrapper { padding: 0; background-color: transparent; box-shadow: none; }
+  }
+
+  /* Interactive Elements */
+  .task-label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .app-check {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #cbd5e1;
+    border-radius: 4px;
+    margin: 0 8px 0 0;
+    background: #fff;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+  .app-check:checked {
+    background-color: #38bdf8;
+    border-color: #38bdf8;
+  }
+  .app-check:checked::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  }
+  .map-link {
+    display: inline-flex;
+    align-items: center;
+    color: #0284c7;
+    text-decoration: none;
+    background: #e0f2fe;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 7.5pt;
+    margin: 2px 2px 2px 0;
+    transition: background 0.2s;
+    border: 1px solid #bae6fd;
+  }
+  .map-link:active { background: #bae6fd; }
+
+  /* Header & Grid Layouts */
+  .header {
+    background-color: #0f172a;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .header-top {
+    display: table;
+    width: 100%;
+    margin-bottom: 4px;
+  }
+
+  .header-title {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .header-title h1 {
+    margin: 0;
+    font-size: 16pt;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #38bdf8;
+  }
+
+  .header-subtitle {
+    margin: 1px 0 0 0;
+    font-size: 9pt;
+    color: #cbd5e1;
+    font-weight: 500;
+  }
+
+  .meta-grid {
+    display: table;
+    width: 100%;
+    border-top: 1px solid #334155;
+    padding-top: 8px;
+    margin-top: 6px;
+  }
+
+  .meta-col {
+    display: table-cell;
+    width: 33.33%;
+    vertical-align: top;
+    font-size: 8pt;
+  }
+
+  .meta-label {
+    text-transform: uppercase;
+    font-size: 6.5pt;
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+
+  .meta-value { color: #f1f5f9; font-weight: 600; }
+
+  /* RATP Transit Badges */
+  .transit-badge {
+    display: inline-block;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 7pt;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    vertical-align: middle;
+    margin: 0 1px;
+    white-space: nowrap;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  .rer-b { background-color: #5291CE; color: #ffffff; }
+  .rer-c { background-color: #F2C500; color: #111827; }
+  .m-1   { background-color: #FFCD00; color: #111827; }
+  .m-6   { background-color: #75A886; color: #ffffff; }
+  .m-12  { background-color: #007852; color: #ffffff; }
+  .m-14  { background-color: #662483; color: #ffffff; }
+
+  /* Content Cards */
+  .day-card {
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 10px;
+    padding: 12px 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .day-header {
+    display: table;
+    width: 100%;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+  }
+
+  .day-title {
+    display: table-cell;
+    font-size: 11pt;
+    font-weight: 800;
+    color: #0f172a;
+    vertical-align: middle;
+  }
+
+  .day-badge {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+
+  .badge {
+    background-color: #e0f2fe;
+    color: #0369a1;
+    font-size: 7.5pt;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+  }
+
+  .content-table { display: table; width: 100%; }
+  .timeline-col { display: table-cell; width: 73%; vertical-align: top; padding-right: 12px; }
+  .landmark-col { display: table-cell; width: 27%; vertical-align: top; text-align: center; }
+
+  .landmark-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 6px;
+    margin-bottom: 10px;
+  }
+  .landmark-img-wrap { 
+    width: 100%; 
+    height: 85px; 
+    margin: 0 auto 6px auto; 
+    border-radius: 6px;
+    overflow: hidden;
+    background-color: #e2e8f0;
+    position: relative;
+  }
+  .landmark-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .landmark-title { font-size: 8pt; font-weight: 700; color: #0f172a; line-height: 1.1; margin-bottom: 4px; }
+
+  /* Accordion / Details Styling */
+  .details-box {
+    margin-top: 4px;
+    text-align: left;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .details-box summary {
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: #0369a1;
+    padding: 5px 6px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f5f9;
+    transition: background-color 0.2s;
+  }
+  
+  .details-box summary::-webkit-details-marker { display: none; }
+  
+  .details-box summary::after {
+    content: '+';
+    font-size: 9pt;
+    font-weight: 800;
+    color: #0284c7;
+    line-height: 1;
+  }
+  
+  .details-box[open] summary::after {
+    content: '−';
+  }
+  
+  .details-content {
+    padding: 6px;
+    font-size: 7pt;
+    color: #334155;
+    border-top: 1px solid #e2e8f0;
+    line-height: 1.35;
+    background-color: #fff;
+  }
+
+  .details-content ul {
+    margin: 4px 0 0 0;
+    padding-left: 14px;
+  }
+  .details-content li { margin-bottom: 3px; }
+
+  .timeline-item {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #e2e8f0;
+  }
+  .timeline-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .time-slot {
+    font-weight: 700;
+    color: #0369a1;
+    font-size: 9pt;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+  }
+  .time-slot span.slot-text { color: #64748b; font-weight: 600; margin-left: 4px; }
+  .activity-desc { margin: 0 0 0 26px; color: #334155; font-size: 8.5pt; line-height: 1.5; }
+
+  .map-container { margin-top: 10px; margin-bottom: 2px; }
+  .map-label { font-size: 7pt; font-weight: 700; color: #64748b; margin-bottom: 4px; }
+
+  .highlight-tag {
+    background-color: #dcfce7; color: #15803d; border: 1px solid #86efac;
+    border-radius: 4px; padding: 1px 5px; font-size: 7pt; font-weight: 700;
+  }
+  .warning-tag {
+    background-color: #fef3c7; color: #b45309; border: 1px solid #fde68a;
+    border-radius: 4px; padding: 1px 5px; font-size: 7pt; font-weight: 700;
+  }
+
+  .table-section { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 8pt; }
+  .table-section th { background-color: #f1f5f9; color: #475569; font-weight: 700; text-align: left; padding: 6px 8px; border: 1px solid #e2e8f0; }
+  .table-section td { padding: 6px 8px; border: 1px solid #e2e8f0; color: #334155; vertical-align: top; }
+
+  .page-break { page-break-before: always; }
+
+  /* Responsive Design for Mobile */
+  @media screen and (max-width: 650px) {
+    .header-title, .header-subtitle { display: block; text-align: left; }
+    .meta-grid { display: flex; flex-direction: column; gap: 8px; padding-top: 12px; }
+    .meta-col { display: block; width: 100%; border-bottom: 1px solid #334155; padding-bottom: 8px; }
+    .meta-col:last-child { border-bottom: none; padding-bottom: 0; }
+    
+    .day-header { display: flex; justify-content: space-between; align-items: center; }
+    .day-title, .day-badge { display: block; width: auto; }
+    
+    .content-table, .timeline-col, .landmark-col { display: block; width: 100%; padding-right: 0; }
+    .landmark-col { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+    .landmark-box { flex: 1; min-width: 140px; }
+    
+    .table-section thead { display: none; }
+    .table-section, .table-section tbody, .table-section tr, .table-section td { display: block; width: 100%; }
+    .table-section tr { margin-bottom: 10px; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+    .table-section td { border: none; padding: 6px 0; border-bottom: 1px dashed #e2e8f0; }
+    .table-section td:last-child { border-bottom: none; }
+    .table-section td::before { 
+      content: attr(data-label); font-size: 7pt; font-weight: 700; color: #94a3b8; 
+      text-transform: uppercase; display: block; margin-bottom: 4px; 
+    }
+    .activity-desc { margin-left: 0; margin-top: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app-wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div class="header-title">
+        <h1>PARIS TRIP & NFL GAMEDAY</h1>
+        <div class="header-subtitle">Offline Visual Guide · Routen-Karten & Sehenswürdigkeiten</div>
+      </div>
+    </div>
+    <div class="meta-grid">
+      <div class="meta-col">
+        <div class="meta-label">Flugzeiten (ZRH ↔ CDG)</div>
+        <div class="meta-value">Sa 07:25 (Hin) · Mo 19:55 (Rück)</div>
+      </div>
+      <div class="meta-col">
+        <div class="meta-label">Hotelbasis</div>
+        <div class="meta-value">Best Western Plus Sydney Opera</div>
+      </div>
+      <div class="meta-col">
+        <div class="meta-label">Gepäck & Modus</div>
+        <div class="meta-value">Nur Rucksäcke · Stadion-sicher</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TICKET GUIDE -->
+  <div class="day-card" style="padding: 10px 14px;">
+    <div class="day-header" style="border-bottom-color: #3b82f6; padding-bottom: 4px;">
+      <div class="day-title" style="color: #1d4ed8;">🎟️ Ticket-Guide (Vorab checken)</div>
+      <div class="day-badge"><span class="badge" style="background-color:#dbeafe; color:#1e40af;">Digital bereitstellen</span></div>
+    </div>
+    
+    <table class="table-section">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Linie / Ziel</th>
+          <th style="width: 35%;">Ticket-Typ</th>
+          <th style="width: 40%;">Wichtige Infos & App</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Linie / Ziel"><span class="transit-badge rer-b">RER B</span> Flughafen CDG</td>
+          <td data-label="Ticket-Typ"><label class="task-label"><input type="checkbox" class="app-check"> <em>Ticket Paris Région <> Aéroports</em></label></td>
+          <td data-label="Wichtige Infos">2 Tickets p.P. via <strong>Bonjour RATP App</strong> (Sa CDG → Châtelet / Mo zurück).</td>
+        </tr>
+        <tr>
+          <td data-label="Linie / Ziel"><span class="transit-badge m-14">M 14</span> <span class="transit-badge m-12">M 12</span> <span class="transit-badge m-6">M 6</span> <span class="transit-badge rer-c">RER C</span></td>
+          <td data-label="Ticket-Typ"><label class="task-label"><input type="checkbox" class="app-check"> <em>Ticket Métro-Train-RER</em></label></td>
+          <td data-label="Wichtige Infos">5–6 Fahrten p.P. digital auf Smartphone laden. Gilt für Zentrum.</td>
+        </tr>
+        <tr>
+          <td data-label="Linie / Ziel"><strong>Musée du Louvre</strong></td>
+          <td data-label="Ticket-Typ"><label class="task-label"><input type="checkbox" class="app-check"> Online: <strong>ticket.louvre.fr</strong></label></td>
+          <td data-label="Wichtige Infos"><strong>10:00 Uhr Slot (Mo)</strong> buchen. Eingang <em>Carrousel du Louvre</em> nutzen.</td>
+        </tr>
+        <tr>
+          <td data-label="Linie / Ziel"><strong>NFL Game (Stade de France)</strong></td>
+          <td data-label="Ticket-Typ"><label class="task-label"><input type="checkbox" class="app-check"> Ticketmaster / NFL App</label></td>
+          <td data-label="Wichtige Infos"><span class="warning-tag">Stadionregel</span> Keine Rucksäcke > DIN A4! Im Hotel lassen.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SAMSTAG -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-title">Samstag: Ankunft, Notre-Dame, Seine & Eiffelturm</div>
+      <div class="day-badge"><span class="badge">Tag 1</span></div>
+    </div>
+
+    <div class="content-table">
+      <div class="timeline-col">
+        <div class="timeline-item">
+          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 08:50 – 10:30 Uhr</label> <span class="slot-text">· Transfer Flughafen CDG → Hotel</span></div>
+          <p class="activity-desc">
+            Ab CDG mit <span class="transit-badge rer-b">RER B</span> bis <em>Châtelet – Les Halles</em> (35 Min.).<br>
+            Umstieg in <span class="transit-badge m-14">M 14</span> → 2 Stationen bis <em>Madeleine</em> (4 Min.).<br>
+            Rucksäcke deponieren am <a href="https://www.google.com/maps/search/?api=1&query=Best+Western+Plus+Sydney+Opera+Paris" target="_blank" class="map-link">📍 Hotel Sydney Opera</a>.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 11:00 – 13:30 Uhr</label> <span class="slot-text">· Notre-Dame & Lunch im Quartier Latin</span></div>
+          <p class="activity-desc">
+            Ab <em>Madeleine</em> mit <span class="transit-badge m-14">M 14</span> bis <em>Châtelet</em> (4 Min.) → Über die Seine zur <strong>Kathedrale Notre-Dame</strong>.<br>
+            <strong>Food-Spots in der Nähe:</strong> Authentisches französisches Bistro-Erlebnis im <a href="https://www.google.com/maps/search/?api=1&query=Le+Petit+Chatelet+Paris" target="_blank" class="map-link">📍 Le Petit Châtelet</a> (Holzofen-Grill) oder grandioses, schnelles Streetfood bei <a href="https://www.google.com/maps/search/?api=1&query=La+Droguerie+Paris+Marais" target="_blank" class="map-link">📍 La Droguerie</a> für eine herzhafte Crêpe.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 14:00 – 17:30 Uhr</label> <span class="slot-text">· Eiffelturm & Arc de Triomphe</span></div>
+          <p class="activity-desc">
+            <span class="highlight-tag">Direktlinie</span> An Station <em>Saint-Michel</em> in den <span class="transit-badge rer-c">RER C</span> steigen → direkt bis <em>Champ de Mars Tour Eiffel</em> (10 Min.).<br>
+            Ab <em>Bir-Hakeim</em> mit <span class="transit-badge m-6">M 6</span> (Hochbahn) bis <em>Charles de Gaulle – Étoile</em> zur Besichtigung des <strong>Arc de Triomphe</strong>.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 18:00 – Open End</label> <span class="slot-text">· Rückweg & Dinner-Highlights</span></div>
+          <p class="activity-desc">
+            Mit <span class="transit-badge m-1">M 1</span> bis <em>Concorde</em>, in die <span class="transit-badge m-12">M 12</span> bis <em>Madeleine</em>.<br>
+            <strong>Dinner & Drinks:</strong> Geniales japanisches Udon auf der Rue Sainte-Anne bei <a href="https://www.google.com/maps/search/?api=1&query=Sanukiya+Paris" target="_blank" class="map-link">📍 Sanukiya</a>. Danach kannst du den Tag im traditionellen <a href="https://www.google.com/maps/search/?api=1&query=Le+Grand+Cafe+Capucines+Paris" target="_blank" class="map-link">📍 Le Grand Café Capucines</a> (nahe Opéra) bei einem perfekt gemixten Espresso Martini entspannt ausklingen lassen.
+          </p>
+        </div>
+      </div>
+
+      <div class="landmark-col">
+        <div class="landmark-box">
+          <div class="landmark-img-wrap">
+            <div style="display:flex; justify-content:center; align-items:center; width:100%; height:100%; color:#475569;">
+              <svg viewBox="0 0 24 24" width="44" height="44" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 22V12L12 7l-6 5v10"/><path d="M12 2v5"/><path d="M10 4h4"/><path d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4"/></svg>
+            </div>
+          </div>
+          <div class="landmark-title">Notre-Dame</div>
+          <details class="details-box">
+            <summary>Highlights</summary>
+            <div class="details-content">
+              <ul>
+                <li><strong>Fassade & Rose:</strong> Die weltberühmte gotische Westfassade und das Rosettenfenster bestaunen.</li>
+                <li><strong>Point Zéro:</strong> Auf dem Domvorplatz ist der Bronzestern eingelassen – der offizielle Vermessungs-Nullpunkt Frankreichs.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+        
+        <div class="landmark-box">
+          <div class="landmark-img-wrap">
+            <div style="display:flex; justify-content:center; align-items:center; width:100%; height:100%; color:#475569;">
+              <svg viewBox="0 0 24 24" width="44" height="44" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22h14"/><path d="M8 22L10 10l2-8 2 8 2 12"/><path d="M7 16h10"/><path d="M9 10h6"/></svg>
+            </div>
+          </div>
+          <div class="landmark-title">Eiffelturm</div>
+          <details class="details-box">
+            <summary>Highlights</summary>
+            <div class="details-content">
+              <ul>
+                <li><strong>Fotospot Trocadéro:</strong> Den besten symmetrischen Blick hast du erhöht vom Place du Trocadéro.</li>
+                <li><strong>Glitzer-Beleuchtung:</strong> Ab Einbruch der Dunkelheit blinkt der Eiffelturm zu jeder vollen Stunde für 5 Minuten.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-container">
+      <div class="map-label">🗺️ WEG-ÜBERSICHT SAMSTAG:</div>
+      <svg viewBox="0 0 700 130" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; font-family: -apple-system, sans-serif;">
+        <rect width="700" height="130" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+        <line x1="70" y1="50" x2="200" y2="50" stroke="#5291CE" stroke-width="5" stroke-linecap="round"/>
+        <line x1="200" y1="50" x2="310" y2="50" stroke="#662483" stroke-width="5" stroke-linecap="round"/>
+        <line x1="310" y1="50" x2="390" y2="85" stroke="#662483" stroke-width="4" stroke-dasharray="4,4"/>
+        <line x1="390" y1="85" x2="490" y2="85" stroke="#F2C500" stroke-width="5" stroke-linecap="round"/>
+        <line x1="490" y1="85" x2="590" y2="50" stroke="#75A886" stroke-width="5" stroke-linecap="round"/>
+        <line x1="590" y1="50" x2="650" y2="50" stroke="#FFCD00" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="70" cy="50" r="8" fill="#5291CE" stroke="#ffffff" stroke-width="2"/>
+        <text x="70" y="30" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">CDG Airport</text>
+        <circle cx="200" cy="50" r="6" fill="#1e293b" stroke="#ffffff" stroke-width="2"/>
+        <text x="200" y="30" font-size="9" font-weight="600" fill="#334155" text-anchor="middle">Châtelet</text>
+        <circle cx="310" cy="50" r="9" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
+        <text x="310" y="24" font-size="10" font-weight="800" fill="#0284c7" text-anchor="middle">🏨 HOTEL</text>
+        <circle cx="390" cy="85" r="7" fill="#e11d48" stroke="#ffffff" stroke-width="2"/>
+        <text x="390" y="105" font-size="9.5" font-weight="700" fill="#e11d48" text-anchor="middle">Notre-Dame</text>
+        <circle cx="490" cy="85" r="8" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
+        <text x="490" y="105" font-size="10" font-weight="800" fill="#d97706" text-anchor="middle">🗼 Eiffelturm</text>
+        <circle cx="590" cy="50" r="8" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+        <text x="590" y="26" font-size="9.5" font-weight="700" fill="#059669" text-anchor="middle">Arc Triomphe</text>
+        <circle cx="650" cy="50" r="7" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
+        <text x="650" y="30" font-size="9" font-weight="700" fill="#0284c7" text-anchor="middle">Hotel</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- SONNTAG -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-title">Sonntag: Montmartre & NFL Game im Stade de France</div>
+      <div class="day-badge"><span class="badge" style="background-color:#fef3c7; color:#b45309;">Matchday</span></div>
+    </div>
+
+    <div class="content-table">
+      <div class="timeline-col">
+        <div class="timeline-item">
+          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 08:45 – 11:30 Uhr</label> <span class="slot-text">· Montmartre & Sacré-Cœur</span></div>
+          <p class="activity-desc">
+            Ab <em>Madeleine</em> mit <span class="transit-badge m-12">M 12</span> direkt bis <em>Abbesses</em> (8 Min.). Aufzug nehmen, Place du Tertre & Basilika <strong>Sacré-Cœur</strong> erkunden.<br>
+            <strong>Frühstücks-Tipp:</strong> Hol dir in der <a href="https://www.google.com/maps/search/?api=1&query=Le+Grenier+a+Pain+Abbesses+Paris" target="_blank" class="map-link">📍 Boulangerie Le Grenier à Pain</a> (Rue des Abbesses) ein preisgekröntes Baguette oder frisches Croissant.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 11:30 – 12:15 Uhr</label> <span class="slot-text">· Hotel-Stopp (Rucksack-Frei)</span></div>
+          <p class="activity-desc">
+            Mit <span class="transit-badge m-12">M 12</span> zurück zum Hotel: Unbedingt Rucksäcke/Taschen im Zimmer lassen (nur Handy, Ticket, Bankkarte fürs Stadion).
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 12:15 – 18:30 Uhr</label> <span class="slot-text">· NFL Game im Stade de France</span></div>
+          <p class="activity-desc">
+            <span class="highlight-tag">Express</span> Vom Hotel 4 Min. zu Fuß nach <a href="https://www.google.com/maps/search/?api=1&query=Gare+Saint-Lazare+Paris" target="_blank" class="map-link">📍 Saint-Lazare</a>.<br>
+            Mit <span class="transit-badge m-14">M 14</span> ohne Umstieg in 10 Min. bis <strong>Saint-Denis Pleyel</strong>.<br>
+            Über die <a href="https://www.google.com/maps/search/?api=1&query=Passerelle+Pleyel+Saint-Denis" target="_blank" class="map-link">📍 Passerelle Pleyel</a> zu Fuß direkt zum Stadion (ca. 10 Min.).<br><br>
+            <strong>🏈 Stadion- & Matchday-Logistik:</strong><br>
+            • <strong>Pre-Game:</strong> Ab 12:00 Uhr laufen die offiziellen Fan-Zones & Tailgating-Aktivitäten direkt auf dem Vorplatz (Parvis du Stade de France).<br>
+            • <strong>Einlass & Sicherheit:</strong> Strikte <em>Clear-Bag-Policy</em>. Normale Taschen über 15L (DIN A4) werden restriktiv abgewiesen. Beste Eingangs-Gates je nach Sektor: H, G, Z oder X (siehe App).<br>
+            • <strong>Cashless:</strong> Das gesamte Stadion ist 100% bargeldlos.<br>
+            • Am Platz bleibt dank früher Anreise entspannt Zeit, um als Commissioner noch in Ruhe die aktuellen Lineups und das Matchup deiner 8-Team Fantasy-Liga zu checken.<br><br>
+            <strong>Rückfahrt:</strong> Mit <span class="transit-badge m-14">M 14</span> direkt nach <em>Madeleine</em> (12 Min.).
+          </p>
+        </div>
+      </div>
+
+      <div class="landmark-col">
+        <div class="landmark-box">
+          <div class="landmark-img-wrap">
+            <div style="display:flex; justify-content:center; align-items:center; width:100%; height:100%; color:#475569;">
+              <svg viewBox="0 0 24 24" width="44" height="44" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-3.31 0-6 2.69-6 6v4H4v10h16V12h-2V8c0-3.31-2.69-6-6-6z"/><path d="M12 12v10"/><path d="M8 22v-6c0-2.21 1.79-4 4-4s4 1.79 4 4v6"/></svg>
+            </div>
+          </div>
+          <div class="landmark-title">Sacré-Cœur</div>
+          <details class="details-box">
+            <summary>Highlights</summary>
+            <div class="details-content">
+              <ul>
+                <li><strong>Panoramablick:</strong> Von den Treppen vor der Basilika hat man den weitesten Ausblick über Paris.</li>
+                <li><strong>Mosaik:</strong> Im Inneren erstrahlt das monumentale Christus-Mosaik an der Kuppeldecke.</li>
+                <li><strong>Place du Tertre:</strong> Nur 2 Minuten entfernt liegt der berühmte Künstler- und Malerplatz.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+        
+        <div class="landmark-box">
+          <div class="landmark-img-wrap">
+            <div style="display:flex; justify-content:center; align-items:center; width:100%; height:100%; color:#475569;">
+              <svg viewBox="0 0 24 24" width="44" height="44" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="6"/><ellipse cx="12" cy="12" rx="5" ry="3"/><path d="M2 12v4c0 3.31 4.48 6 10 6s10-2.69 10-6v-4"/></svg>
+            </div>
+          </div>
+          <div class="landmark-title">Stade de France</div>
+          <details class="details-box">
+            <summary>Matchday</summary>
+            <div class="details-content">
+              <ul>
+                <li><strong>Mega-Arena:</strong> Frankreichs Nationalstadion fasst über 80.000 Zuschauer mit markantem Schwebedach.</li>
+                <li><strong>Vorplatz (Parvis):</strong> Offizielle NFL Fan-Zone mit Event-Bühnen, Merch-Trucks und Food-Trucks vor dem Spiel.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-container">
+      <div class="map-label">🗺️ WEG-ÜBERSICHT SONNTAG:</div>
+      <svg viewBox="0 0 700 120" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; font-family: -apple-system, sans-serif;">
+        <rect width="700" height="120" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+        <line x1="80" y1="60" x2="220" y2="30" stroke="#007852" stroke-width="5" stroke-linecap="round"/>
+        <line x1="220" y1="30" x2="350" y2="60" stroke="#007852" stroke-width="5" stroke-linecap="round"/>
+        <line x1="350" y1="60" x2="440" y2="60" stroke="#64748b" stroke-width="3" stroke-dasharray="4,3"/>
+        <line x1="440" y1="60" x2="580" y2="60" stroke="#662483" stroke-width="6" stroke-linecap="round"/>
+        <line x1="580" y1="60" x2="650" y2="60" stroke="#64748b" stroke-width="3" stroke-dasharray="4,3"/>
+        <circle cx="80" cy="60" r="7" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
+        <text x="80" y="80" font-size="9.5" font-weight="700" fill="#0f172a" text-anchor="middle">Madeleine</text>
+        <circle cx="220" cy="30" r="8" fill="#ea580c" stroke="#ffffff" stroke-width="2"/>
+        <text x="220" y="16" font-size="10" font-weight="800" fill="#ea580c" text-anchor="middle">⛪ Sacré-Cœur</text>
+        <circle cx="350" cy="60" r="8" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
+        <text x="350" y="80" font-size="9" font-weight="800" fill="#0284c7" text-anchor="middle">🏨 Hotel</text>
+        <circle cx="440" cy="60" r="6" fill="#1e293b" stroke="#ffffff" stroke-width="2"/>
+        <text x="440" y="80" font-size="9" font-weight="700" fill="#334155" text-anchor="middle">St-Lazare</text>
+        <circle cx="580" cy="60" r="7" fill="#662483" stroke="#ffffff" stroke-width="2"/>
+        <text x="580" y="80" font-size="9" font-weight="700" fill="#662483" text-anchor="middle">St-Denis Pleyel</text>
+        <circle cx="650" cy="60" r="9" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
+        <text x="650" y="38" font-size="10.5" font-weight="800" fill="#dc2626" text-anchor="middle">🏈 NFL GAME</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- MONTAG -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-title">Montag: Louvre, Galeries Lafayette & Rückflug</div>
+      <div class="day-badge"><span class="badge">Tag 3</span></div>
+    </div>
+
+    <div class="content-table">
+      <div class="timeline-col">
+        <div class="timeline-item">
+          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 08:30 – 09:30 Uhr</label> <span class="slot-text">· Check-out</span></div>
+          <p class="activity-desc">Frühstück im Hotel, auschecken und Rucksäcke an der Hotelrezeption lagern.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 09:40 – 13:00 Uhr</label> <span class="slot-text">· Musée du Louvre (10:00 Slot)</span></div>
+          <p class="activity-desc">
+            Ab <em>Madeleine</em> mit <span class="transit-badge m-14">M 14</span> bis <em>Pyramides</em> (2 Min.).<br>
+            <strong>Geheim-Eingang:</strong> Unterirdisch via <a href="https://www.google.com/maps/search/?api=1&query=Carrousel+du+Louvre" target="_blank" class="map-link">📍 Carrousel du Louvre</a> (Rue de Rivoli 99 – deutlich kürzere Wartezeiten).
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 13:15 – 16:30 Uhr</label> <span class="slot-text">· Palais-Royal & Galeries Lafayette</span></div>
+          <p class="activity-desc">
+            Säulenhof <strong>Palais-Royal</strong> & Lunch. 12 Min. Spaziergang über Opéra zu den <a href="https://www.google.com/maps/search/?api=1&query=Galeries+Lafayette+Haussmann" target="_blank" class="map-link">📍 Galeries Lafayette</a>.<br>
+            3 Min. Fußweg zum Hotel, Rucksäcke abholen.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 16:45 – 19:55 Uhr</label> <span class="slot-text">· Transfer & Rückflug</span></div>
+          <p class="activity-desc">
+            Ab <em>Madeleine</em> mit <span class="transit-badge m-14">M 14</span> nach <em>Châtelet</em> (4 Min.) → Umstieg in <span class="transit-badge rer-b">RER B</span> zum CDG Airport (35 Min.). Abflug 19:55 Uhr.
+          </p>
+        </div>
+      </div>
+
+      <div class="landmark-col">
+        <div class="landmark-box">
+          <div class="landmark-img-wrap">
+            <div style="display:flex; justify-content:center; align-items:center; width:100%; height:100%; color:#475569;">
+              <svg viewBox="0 0 24 24" width="44" height="44" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 22h20L12 2z"/><path d="M12 2v20"/><path d="M7 12l10 0"/></svg>
+            </div>
+          </div>
+          <div class="landmark-title">Musée du Louvre</div>
+          <details class="details-box">
+            <summary>Must-Sees</summary>
+            <div class="details-content">
+              <ul>
+                <li><strong>Mona Lisa:</strong> Im Denon-Flügel (Saal 711). Gleich nach dem Einlass direkt ansteuern!</li>
+                <li><strong>Venus von Milo:</strong> Berühmteste griechische Skulptur (Sully-Flügel, Saal 345).</li>
+                <li><strong>Nike von Samothrake:</strong> Triumphale Statue auf der großen Daru-Treppe (Denon-Flügel).</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+        
+        <div class="landmark-box">
+          <div class="landmark-img-wrap">
+            <div style="display:flex; justify-content:center; align-items:center; width:100%; height:100%; color:#475569;">
+              <svg viewBox="0 0 24 24" width="44" height="44" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+          </div>
+          <div class="landmark-title">Galeries Lafayette</div>
+          <details class="details-box">
+            <summary>Highlights</summary>
+            <div class="details-content">
+              <ul>
+                <li><strong>Jugendstil-Glaskuppel:</strong> Die historische "Coupole" von 1912 im Herzen des Kaufhauses.</li>
+                <li><strong>Kostenlose Dachterrasse (7. OG):</strong> Grandioser Panoramablick direkt auf die Opéra Garnier und den Eiffelturm.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-container">
+      <div class="map-label">🗺️ WEG-ÜBERSICHT MONTAG:</div>
+      <svg viewBox="0 0 700 120" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; font-family: -apple-system, sans-serif;">
+        <rect width="700" height="120" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+        <line x1="70" y1="55" x2="180" y2="55" stroke="#662483" stroke-width="5" stroke-linecap="round"/>
+        <line x1="180" y1="55" x2="300" y2="55" stroke="#64748b" stroke-width="3" stroke-dasharray="4,3"/>
+        <line x1="300" y1="55" x2="430" y2="55" stroke="#64748b" stroke-width="3" stroke-dasharray="4,3"/>
+        <line x1="430" y1="55" x2="530" y2="55" stroke="#64748b" stroke-width="3" stroke-dasharray="4,3"/>
+        <line x1="530" y1="55" x2="630" y2="55" stroke="#5291CE" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="70" cy="55" r="7" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
+        <text x="70" y="32" font-size="9" font-weight="700" fill="#0284c7" text-anchor="middle">🏨 Hotel</text>
+        <circle cx="180" cy="55" r="9" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
+        <text x="180" y="30" font-size="10" font-weight="800" fill="#d97706" text-anchor="middle">🎨 Louvre (10h)</text>
+        <circle cx="430" cy="55" r="8" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+        <text x="430" y="30" font-size="9.5" font-weight="800" fill="#059669" text-anchor="middle">🛍️ Lafayette</text>
+        <circle cx="630" cy="55" r="8" fill="#5291CE" stroke="#ffffff" stroke-width="2"/>
+        <text x="630" y="30" font-size="9.5" font-weight="800" fill="#5291CE" text-anchor="middle">✈️ CDG Airport</text>
+      </svg>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
