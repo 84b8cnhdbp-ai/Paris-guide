@@ -2,8 +2,19 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- viewport-fit=cover für iPhone Notch / Dynamic Island -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Paris Trip & NFL Gameday</title>
+
+<!-- iOS Web-App & Home-Screen Einstellungen -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Paris Trip">
+<meta name="theme-color" content="#0f172a">
+
+<!-- App-Icon für iOS Home Screen -->
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' style='background:%230f172a; border-radius:20px;'><text y='68' x='50' text-anchor='middle' font-size='60'>🗼</text></svg>">
+
 <style>
   @page {
     size: A4;
@@ -28,19 +39,23 @@
     color: #1e293b;
     font-size: 8.5pt;
     line-height: 1.35;
+    background-color: #0f172a;
+    -webkit-font-smoothing: antialiased;
   }
 
   /* Web-App Mobile Styling */
   @media screen {
     html, body {
       background-color: #0f172a;
+      min-height: 100vh;
     }
     .app-wrapper {
       max-width: 800px;
       margin: 0 auto;
       background-color: #f8fafc;
       min-height: 100vh;
-      padding: 10px;
+      /* iPhone Safe-Area Insets */
+      padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
   }
@@ -48,20 +63,22 @@
     .app-wrapper { padding: 0; background-color: transparent; box-shadow: none; }
   }
 
-  /* Interactive Elements */
+  /* Interactive Elements & Touch Targets */
   .task-label {
     display: inline-flex;
     align-items: center;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    padding: 2px 0;
   }
   .app-check {
     appearance: none;
     -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     border: 2px solid #cbd5e1;
-    border-radius: 4px;
+    border-radius: 5px;
     margin: 0 8px 0 0;
     background: #fff;
     display: grid;
@@ -76,8 +93,8 @@
   }
   .app-check:checked::before {
     content: "";
-    width: 10px;
-    height: 10px;
+    width: 11px;
+    height: 11px;
     background-color: white;
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
   }
@@ -87,23 +104,24 @@
     color: #0284c7;
     text-decoration: none;
     background: #e0f2fe;
-    padding: 3px 6px;
-    border-radius: 4px;
+    padding: 4px 8px;
+    border-radius: 5px;
     font-weight: 700;
-    font-size: 7.5pt;
-    margin: 2px 2px 2px 0;
+    font-size: 8pt;
+    margin: 3px 2px 3px 0;
     transition: background 0.2s;
     border: 1px solid #bae6fd;
+    -webkit-tap-highlight-color: transparent;
   }
   .map-link:active { background: #bae6fd; }
 
-  /* Header & Grid Layouts */
+  /* Header & Layout */
   .header {
     background-color: #0f172a;
     color: #ffffff;
-    border-radius: 8px;
-    padding: 12px 14px;
-    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   }
 
@@ -111,11 +129,6 @@
     display: table;
     width: 100%;
     margin-bottom: 4px;
-  }
-
-  .header-title {
-    display: table-cell;
-    vertical-align: middle;
   }
 
   .header-title h1 {
@@ -127,7 +140,7 @@
   }
 
   .header-subtitle {
-    margin: 1px 0 0 0;
+    margin: 2px 0 0 0;
     font-size: 9pt;
     color: #cbd5e1;
     font-weight: 500;
@@ -138,7 +151,7 @@
     width: 100%;
     border-top: 1px solid #334155;
     padding-top: 8px;
-    margin-top: 6px;
+    margin-top: 8px;
   }
 
   .meta-col {
@@ -162,9 +175,9 @@
   /* RATP Transit Badges */
   .transit-badge {
     display: inline-block;
-    padding: 2px 5px;
+    padding: 2px 6px;
     border-radius: 4px;
-    font-size: 7pt;
+    font-size: 7.5pt;
     font-weight: 800;
     letter-spacing: 0.2px;
     vertical-align: middle;
@@ -182,10 +195,10 @@
   /* Content Cards */
   .day-card {
     background: #ffffff;
-    border-radius: 8px;
+    border-radius: 10px;
     border: 1px solid #e2e8f0;
-    margin-bottom: 10px;
-    padding: 12px 14px;
+    margin-bottom: 12px;
+    padding: 14px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   }
 
@@ -193,8 +206,8 @@
     display: table;
     width: 100%;
     border-bottom: 2px solid #e2e8f0;
-    padding-bottom: 6px;
-    margin-bottom: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
   }
 
   .day-title {
@@ -229,7 +242,7 @@
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
-    padding: 6px;
+    padding: 8px;
     margin-bottom: 10px;
   }
   .landmark-img-wrap { 
@@ -247,7 +260,7 @@
     object-fit: cover;
     display: block;
   }
-  .landmark-title { font-size: 8pt; font-weight: 700; color: #0f172a; line-height: 1.1; margin-bottom: 4px; }
+  .landmark-title { font-size: 8.5pt; font-weight: 700; color: #0f172a; line-height: 1.1; margin-bottom: 4px; }
 
   /* Accordion / Details Styling */
   .details-box {
@@ -255,29 +268,29 @@
     text-align: left;
     background-color: #ffffff;
     border: 1px solid #cbd5e1;
-    border-radius: 4px;
+    border-radius: 5px;
     overflow: hidden;
   }
   
   .details-box summary {
-    font-size: 7.5pt;
+    font-size: 8pt;
     font-weight: 700;
     color: #0369a1;
-    padding: 5px 6px;
+    padding: 6px 8px;
     cursor: pointer;
     list-style: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #f1f5f9;
-    transition: background-color 0.2s;
+    -webkit-tap-highlight-color: transparent;
   }
   
   .details-box summary::-webkit-details-marker { display: none; }
   
   .details-box summary::after {
     content: '+';
-    font-size: 9pt;
+    font-size: 10pt;
     font-weight: 800;
     color: #0284c7;
     line-height: 1;
@@ -288,23 +301,23 @@
   }
   
   .details-content {
-    padding: 6px;
-    font-size: 7pt;
+    padding: 8px;
+    font-size: 7.5pt;
     color: #334155;
     border-top: 1px solid #e2e8f0;
-    line-height: 1.35;
+    line-height: 1.4;
     background-color: #fff;
   }
 
   .details-content ul {
     margin: 4px 0 0 0;
-    padding-left: 14px;
+    padding-left: 16px;
   }
-  .details-content li { margin-bottom: 3px; }
+  .details-content li { margin-bottom: 4px; }
 
   .timeline-item {
-    margin-bottom: 10px;
-    padding-bottom: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
     border-bottom: 1px dashed #e2e8f0;
   }
   .timeline-item:last-child {
@@ -316,24 +329,24 @@
   .time-slot {
     font-weight: 700;
     color: #0369a1;
-    font-size: 9pt;
+    font-size: 9.5pt;
     margin-bottom: 4px;
     display: flex;
     align-items: center;
   }
   .time-slot span.slot-text { color: #64748b; font-weight: 600; margin-left: 4px; }
-  .activity-desc { margin: 0 0 0 26px; color: #334155; font-size: 8.5pt; line-height: 1.5; }
+  .activity-desc { margin: 0 0 0 28px; color: #334155; font-size: 8.5pt; line-height: 1.5; }
 
-  .map-container { margin-top: 10px; margin-bottom: 2px; }
-  .map-label { font-size: 7pt; font-weight: 700; color: #64748b; margin-bottom: 4px; }
+  .map-container { margin-top: 12px; margin-bottom: 4px; }
+  .map-label { font-size: 7.5pt; font-weight: 700; color: #64748b; margin-bottom: 4px; }
 
   .highlight-tag {
     background-color: #dcfce7; color: #15803d; border: 1px solid #86efac;
-    border-radius: 4px; padding: 1px 5px; font-size: 7pt; font-weight: 700;
+    border-radius: 4px; padding: 1px 5px; font-size: 7.5pt; font-weight: 700;
   }
   .warning-tag {
     background-color: #fef3c7; color: #b45309; border: 1px solid #fde68a;
-    border-radius: 4px; padding: 1px 5px; font-size: 7pt; font-weight: 700;
+    border-radius: 4px; padding: 1px 5px; font-size: 7.5pt; font-weight: 700;
   }
 
   .table-section { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 8pt; }
@@ -342,15 +355,17 @@
 
   .page-break { page-break-before: always; }
 
-  /* Responsive Design for Mobile */
+  /* Mobile Optimierungen für iPhone / Safari */
   @media screen and (max-width: 650px) {
-    .header-title, .header-subtitle { display: block; text-align: left; }
-    .meta-grid { display: flex; flex-direction: column; gap: 8px; padding-top: 12px; }
+    body { font-size: 9pt; }
+    .header-title h1 { font-size: 14pt; }
+    .header-subtitle { font-size: 8.5pt; }
+    .meta-grid { display: flex; flex-direction: column; gap: 8px; padding-top: 10px; }
     .meta-col { display: block; width: 100%; border-bottom: 1px solid #334155; padding-bottom: 8px; }
     .meta-col:last-child { border-bottom: none; padding-bottom: 0; }
     
     .day-header { display: flex; justify-content: space-between; align-items: center; }
-    .day-title, .day-badge { display: block; width: auto; }
+    .day-title { font-size: 10.5pt; }
     
     .content-table, .timeline-col, .landmark-col { display: block; width: 100%; padding-right: 0; }
     .landmark-col { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
@@ -365,7 +380,8 @@
       content: attr(data-label); font-size: 7pt; font-weight: 700; color: #94a3b8; 
       text-transform: uppercase; display: block; margin-bottom: 4px; 
     }
-    .activity-desc { margin-left: 0; margin-top: 6px; }
+    .activity-desc { margin-left: 0; margin-top: 6px; font-size: 9pt; }
+    .time-slot { font-size: 10pt; }
   }
 </style>
 </head>
@@ -475,7 +491,7 @@
           <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 18:00 – Open End</label> <span class="slot-text">· Rückweg & Dinner-Highlights</span></div>
           <p class="activity-desc">
             Mit <span class="transit-badge m-1">M 1</span> bis <em>Concorde</em>, in die <span class="transit-badge m-12">M 12</span> bis <em>Madeleine</em>.<br>
-            <strong>Dinner & Drinks:</strong> Geniales japanisches Udon auf der Rue Sainte-Anne bei <a href="https://www.google.com/maps/search/?api=1&query=Sanukiya+Paris" target="_blank" class="map-link">📍 Sanukiya</a>. Danach kannst du den Tag im traditionellen <a href="https://www.google.com/maps/search/?api=1&query=Le+Grand+Cafe+Capucines+Paris" target="_blank" class="map-link">📍 Le Grand Café Capucines</a> (nahe Opéra) bei einem perfekt gemixten Espresso Martini entspannt ausklingen lassen.
+            <strong>Dinner & Drinks:</strong> Geniales japanisches Udon auf der Rue Sainte-Anne bei <a href="https://www.google.com/maps/search/?api=1&query=Sanukiya+Paris" target="_blank" class="map-link">📍 Sanukiya</a>. Danach könnt ihr den Tag im traditionellen <a href="https://www.google.com/maps/search/?api=1&query=Le+Grand+Cafe+Capucines+Paris" target="_blank" class="map-link">📍 Le Grand Café Capucines</a> (nahe Opéra) bei einem perfekt gemixten Espresso Martini entspannt ausklingen lassen.
           </p>
         </div>
       </div>
@@ -483,17 +499,15 @@
       <div class="landmark-col">
         <div class="landmark-box">
           <div class="landmark-img-wrap">
-            <div style="display:flex; justify-content:center; align-items:center; width:100%; height:100%; color:#475569;">
-              <svg viewBox="0 0 24 24" width="44" height="44" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 22V12L12 7l-6 5v10"/><path d="M12 2v5"/><path d="M10 4h4"/><path d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4"/></svg>
-            </div>
+            <img src="notredame.jpeg" alt="Notre-Dame" loading="lazy">
           </div>
           <div class="landmark-title">Notre-Dame</div>
           <details class="details-box">
             <summary>Highlights</summary>
             <div class="details-content">
               <ul>
-                <li><strong>Fassade & Rose:</strong> Die weltberühmte gotische Westfassade und das Rosettenfenster bestaunen.</li>
-                <li><strong>Point Zéro:</strong> Auf dem Domvorplatz ist der Bronzestern eingelassen – der offizielle Vermessungs-Nullpunkt Frankreichs.</li>
+                <li><strong>Fassade & Rose:</strong> Die gotische Westfassade und das Rosettenfenster bestaunen.</li>
+                <li><strong>Point Zéro:</strong> Auf dem Domvorplatz ist der Bronzestern eingelassen – der Vermessungs-Nullpunkt Frankreichs.</li>
               </ul>
             </div>
           </details>
@@ -501,17 +515,15 @@
         
         <div class="landmark-box">
           <div class="landmark-img-wrap">
-            <div style="display:flex; justify-content:center; align-items:center; width:100%; height:100%; color:#475569;">
-              <svg viewBox="0 0 24 24" width="44" height="44" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22h14"/><path d="M8 22L10 10l2-8 2 8 2 12"/><path d="M7 16h10"/><path d="M9 10h6"/></svg>
-            </div>
+            <img src="eiffelturm.jpeg" alt="Eiffelturm" loading="lazy">
           </div>
           <div class="landmark-title">Eiffelturm</div>
           <details class="details-box">
             <summary>Highlights</summary>
             <div class="details-content">
               <ul>
-                <li><strong>Fotospot Trocadéro:</strong> Den besten symmetrischen Blick hast du erhöht vom Place du Trocadéro.</li>
-                <li><strong>Glitzer-Beleuchtung:</strong> Ab Einbruch der Dunkelheit blinkt der Eiffelturm zu jeder vollen Stunde für 5 Minuten.</li>
+                <li><strong>Fotospot Trocadéro:</strong> Bester symmetrischer Blick vom Place du Trocadéro.</li>
+                <li><strong>Glitzer-Beleuchtung:</strong> Ab Einbruch der Dunkelheit blinkt der Turm zu jeder vollen Stunde für 5 Minuten.</li>
               </ul>
             </div>
           </details>
@@ -562,14 +574,14 @@
           <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 08:45 – 11:30 Uhr</label> <span class="slot-text">· Montmartre & Sacré-Cœur</span></div>
           <p class="activity-desc">
             Ab <em>Madeleine</em> mit <span class="transit-badge m-12">M 12</span> direkt bis <em>Abbesses</em> (8 Min.). Aufzug nehmen, Place du Tertre & Basilika <strong>Sacré-Cœur</strong> erkunden.<br>
-            <strong>Frühstücks-Tipp:</strong> Hol dir in der <a href="https://www.google.com/maps/search/?api=1&query=Le+Grenier+a+Pain+Abbesses+Paris" target="_blank" class="map-link">📍 Boulangerie Le Grenier à Pain</a> (Rue des Abbesses) ein preisgekröntes Baguette oder frisches Croissant.
+            <strong>Frühstücks-Tipp:</strong> In der <a href="https://www.google.com/maps/search/?api=1&query=Le+Grenier+a+Pain+Abbesses+Paris" target="_blank" class="map-link">📍 Boulangerie Le Grenier à Pain</a> (Rue des Abbesses) ein Baguette oder Croissant holen.
           </p>
         </div>
 
         <div class="timeline-item">
           <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 11:30 – 12:15 Uhr</label> <span class="slot-text">· Hotel-Stopp (Rucksack-Frei)</span></div>
           <p class="activity-desc">
-            Mit <span class="transit-badge m-12">M 12</span> zurück zum Hotel: Unbedingt Rucksäcke/Taschen im Zimmer lassen (nur Handy, Ticket, Bankkarte fürs Stadion).
+            Mit <span class="transit-badge m-12">M 12</span> zurück zum Hotel: Rucksäcke/Taschen im Zimmer lassen (nur Handy, Ticket, Bankkarte fürs Stadion).
           </p>
         </div>
 
@@ -580,10 +592,9 @@
             Mit <span class="transit-badge m-14">M 14</span> ohne Umstieg in 10 Min. bis <strong>Saint-Denis Pleyel</strong>.<br>
             Über die <a href="https://www.google.com/maps/search/?api=1&query=Passerelle+Pleyel+Saint-Denis" target="_blank" class="map-link">📍 Passerelle Pleyel</a> zu Fuß direkt zum Stadion (ca. 10 Min.).<br><br>
             <strong>🏈 Stadion- & Matchday-Logistik:</strong><br>
-            • <strong>Pre-Game:</strong> Ab 12:00 Uhr laufen die offiziellen Fan-Zones & Tailgating-Aktivitäten direkt auf dem Vorplatz (Parvis du Stade de France).<br>
-            • <strong>Einlass & Sicherheit:</strong> Strikte <em>Clear-Bag-Policy</em>. Normale Taschen über 15L (DIN A4) werden restriktiv abgewiesen. Beste Eingangs-Gates je nach Sektor: H, G, Z oder X (siehe App).<br>
-            • <strong>Cashless:</strong> Das gesamte Stadion ist 100% bargeldlos.<br>
-            • Am Platz bleibt dank früher Anreise entspannt Zeit, um als Commissioner noch in Ruhe die aktuellen Lineups und das Matchup deiner 8-Team Fantasy-Liga zu checken.<br><br>
+            • <strong>Pre-Game:</strong> Ab 12:00 Uhr laufen die offiziellen Fan-Zones direkt auf dem Vorplatz.<br>
+            • <strong>Einlass & Sicherheit:</strong> Strikte <em>Clear-Bag-Policy</em>. Taschen > DIN A4 werden abgewiesen. Eingang siehe Ticket.<br>
+            • <strong>Cashless:</strong> Das Stadion ist 100% bargeldlos.<br><br>
             <strong>Rückfahrt:</strong> Mit <span class="transit-badge m-14">M 14</span> direkt nach <em>Madeleine</em> (12 Min.).
           </p>
         </div>
@@ -592,18 +603,16 @@
       <div class="landmark-col">
         <div class="landmark-box">
           <div class="landmark-img-wrap">
-            <div style="display:flex; justify-content:center; align-items:center; width:100%; height:100%; color:#475569;">
-              <svg viewBox="0 0 24 24" width="44" height="44" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-3.31 0-6 2.69-6 6v4H4v10h16V12h-2V8c0-3.31-2.69-6-6-6z"/><path d="M12 12v10"/><path d="M8 22v-6c0-2.21 1.79-4 4-4s4 1.79 4 4v6"/></svg>
-            </div>
+            <img src="sacrecoeur.jpeg" alt="Sacré-Cœur" loading="lazy">
           </div>
           <div class="landmark-title">Sacré-Cœur</div>
           <details class="details-box">
             <summary>Highlights</summary>
             <div class="details-content">
               <ul>
-                <li><strong>Panoramablick:</strong> Von den Treppen vor der Basilika hat man den weitesten Ausblick über Paris.</li>
-                <li><strong>Mosaik:</strong> Im Inneren erstrahlt das monumentale Christus-Mosaik an der Kuppeldecke.</li>
-                <li><strong>Place du Tertre:</strong> Nur 2 Minuten entfernt liegt der berühmte Künstler- und Malerplatz.</li>
+                <li><strong>Panoramablick:</strong> Vor der Basilika hat man den weitesten Ausblick über ganz Paris.</li>
+                <li><strong>Mosaik:</strong> Monumentales Christus-Mosaik an der Kuppeldecke im Inneren.</li>
+                <li><strong>Place du Tertre:</strong> Nur 2 Min. entfernt liegt der berühmte Künstlerplatz.</li>
               </ul>
             </div>
           </details>
@@ -611,17 +620,15 @@
         
         <div class="landmark-box">
           <div class="landmark-img-wrap">
-            <div style="display:flex; justify-content:center; align-items:center; width:100%; height:100%; color:#475569;">
-              <svg viewBox="0 0 24 24" width="44" height="44" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="6"/><ellipse cx="12" cy="12" rx="5" ry="3"/><path d="M2 12v4c0 3.31 4.48 6 10 6s10-2.69 10-6v-4"/></svg>
-            </div>
+            <img src="stadion.jpeg" alt="Stade de France" loading="lazy">
           </div>
           <div class="landmark-title">Stade de France</div>
           <details class="details-box">
             <summary>Matchday</summary>
             <div class="details-content">
               <ul>
-                <li><strong>Mega-Arena:</strong> Frankreichs Nationalstadion fasst über 80.000 Zuschauer mit markantem Schwebedach.</li>
-                <li><strong>Vorplatz (Parvis):</strong> Offizielle NFL Fan-Zone mit Event-Bühnen, Merch-Trucks und Food-Trucks vor dem Spiel.</li>
+                <li><strong>Mega-Arena:</strong> Frankreichs Nationalstadion mit über 80.000 Plätzen.</li>
+                <li><strong>Vorplatz:</strong> Fan-Zone mit Entertainment & Merch vor dem Spiel.</li>
               </ul>
             </div>
           </details>
@@ -672,7 +679,7 @@
           <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 09:40 – 13:00 Uhr</label> <span class="slot-text">· Musée du Louvre (10:00 Slot)</span></div>
           <p class="activity-desc">
             Ab <em>Madeleine</em> mit <span class="transit-badge m-14">M 14</span> bis <em>Pyramides</em> (2 Min.).<br>
-            <strong>Geheim-Eingang:</strong> Unterirdisch via <a href="https://www.google.com/maps/search/?api=1&query=Carrousel+du+Louvre" target="_blank" class="map-link">📍 Carrousel du Louvre</a> (Rue de Rivoli 99 – deutlich kürzere Wartezeiten).
+            <strong>Geheim-Eingang:</strong> Unterirdisch via <a href="https://www.google.com/maps/search/?api=1&query=Carrousel+du+Louvre" target="_blank" class="map-link">📍 Carrousel du Louvre</a> (Rue de Rivoli 99 – kürzere Wartezeiten).
           </p>
         </div>
 
@@ -695,18 +702,16 @@
       <div class="landmark-col">
         <div class="landmark-box">
           <div class="landmark-img-wrap">
-            <div style="display:flex; justify-content:center; align-items:center; width:100%; height:100%; color:#475569;">
-              <svg viewBox="0 0 24 24" width="44" height="44" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 22h20L12 2z"/><path d="M12 2v20"/><path d="M7 12l10 0"/></svg>
-            </div>
+            <img src="louvre.jpeg" alt="Musée du Louvre" loading="lazy">
           </div>
           <div class="landmark-title">Musée du Louvre</div>
           <details class="details-box">
             <summary>Must-Sees</summary>
             <div class="details-content">
               <ul>
-                <li><strong>Mona Lisa:</strong> Im Denon-Flügel (Saal 711). Gleich nach dem Einlass direkt ansteuern!</li>
-                <li><strong>Venus von Milo:</strong> Berühmteste griechische Skulptur (Sully-Flügel, Saal 345).</li>
-                <li><strong>Nike von Samothrake:</strong> Triumphale Statue auf der großen Daru-Treppe (Denon-Flügel).</li>
+                <li><strong>Mona Lisa:</strong> Im Denon-Flügel (Saal 711). Direkt am Morgen ansteuern!</li>
+                <li><strong>Venus von Milo:</strong> Sully-Flügel, Saal 345.</li>
+                <li><strong>Nike von Samothrake:</strong> Daru-Treppe (Denon-Flügel).</li>
               </ul>
             </div>
           </details>
@@ -714,17 +719,15 @@
         
         <div class="landmark-box">
           <div class="landmark-img-wrap">
-            <div style="display:flex; justify-content:center; align-items:center; width:100%; height:100%; color:#475569;">
-              <svg viewBox="0 0 24 24" width="44" height="44" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            </div>
+            <img src="lafayette.jpeg" alt="Galeries Lafayette" loading="lazy">
           </div>
           <div class="landmark-title">Galeries Lafayette</div>
           <details class="details-box">
             <summary>Highlights</summary>
             <div class="details-content">
               <ul>
-                <li><strong>Jugendstil-Glaskuppel:</strong> Die historische "Coupole" von 1912 im Herzen des Kaufhauses.</li>
-                <li><strong>Kostenlose Dachterrasse (7. OG):</strong> Grandioser Panoramablick direkt auf die Opéra Garnier und den Eiffelturm.</li>
+                <li><strong>Jugendstil-Glaskuppel:</strong> Die historische "Coupole" von 1912.</li>
+                <li><strong>Kostenlose Dachterrasse (7. OG):</strong> Toller Panoramablick auf die Opéra Garnier und den Eiffelturm.</li>
               </ul>
             </div>
           </details>
@@ -754,5 +757,19 @@
   </div>
 
 </div>
+
+<!-- Checkbox LocalStorage Sync -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const checkboxes = document.querySelectorAll('.app-check');
+    checkboxes.forEach((cb, i) => {
+      const saved = localStorage.getItem('paris_task_' + i);
+      if (saved === 'true') cb.checked = true;
+      cb.addEventListener('change', () => {
+        localStorage.setItem('paris_task_' + i, cb.checked);
+      });
+    });
+  });
+</script>
 </body>
 </html>
