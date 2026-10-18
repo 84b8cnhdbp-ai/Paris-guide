@@ -188,6 +188,7 @@
   .rer-b { background-color: #5291CE; color: #ffffff; }
   .rer-c { background-color: #F2C500; color: #111827; }
   .m-1   { background-color: #FFCD00; color: #111827; }
+  .m-4   { background-color: #BE418D; color: #ffffff; }
   .m-6   { background-color: #75A886; color: #ffffff; }
   .m-12  { background-color: #007852; color: #ffffff; }
   .m-14  { background-color: #662483; color: #ffffff; }
@@ -416,38 +417,34 @@
   <!-- TICKET GUIDE -->
   <div class="day-card" style="padding: 10px 14px;">
     <div class="day-header" style="border-bottom-color: #3b82f6; padding-bottom: 4px;">
-      <div class="day-title" style="color: #1d4ed8;">🎟️ Ticket-Guide (Vorab checken)</div>
+      <div class="day-title" style="color: #1d4ed8;">🎟️ Ticket-Guide (Vorab in Wallet laden)</div>
       <div class="day-badge"><span class="badge" style="background-color:#dbeafe; color:#1e40af;">Digital bereitstellen</span></div>
     </div>
     
     <table class="table-section">
       <thead>
         <tr>
-          <th style="width: 25%;">Linie / Ziel</th>
-          <th style="width: 35%;">Ticket-Typ</th>
-          <th style="width: 40%;">Wichtige Infos & App</th>
+          <th style="width: 25%;">Kategorie / Bereich</th>
+          <th style="width: 35%;">Option A (Günstig & passgenau)</th>
+          <th style="width: 40%;">Option B (Flatrate All-In)</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td data-label="Linie / Ziel"><span class="transit-badge rer-b">RER B</span> Flughafen CDG</td>
-          <td data-label="Ticket-Typ"><label class="task-label"><input type="checkbox" class="app-check"> <em>Ticket Paris Région <> Aéroports</em></label></td>
-          <td data-label="Wichtige Infos">2 Tickets p.P. via <strong>Bonjour RATP App</strong> (Sa CDG → Châtelet / Mo zurück).</td>
+          <td data-label="Bereich"><strong>Flughafentransfers</strong> (CDG ↔ Hotel)</td>
+          <td data-label="Option A"><label class="task-label"><input type="checkbox" class="app-check"> <strong>2× Paris-Region &lt;&gt; Flughäfen</strong> (je 14.00 €)</label></td>
+          <td data-label="Option B" rowspan="2">
+            <label class="task-label"><input type="checkbox" class="app-check"> <strong>Paris-Visite Pass 3 Tage (63.80 €)</strong></label>
+            <div style="font-size:7.5pt; color:#64748b; margin-top:4px;">Deckt alle 3 Tage komplett ab: CDG Flughafen, Stadtgebiet, Metro 14 zum Stade de France sowie Funiculaire Montmartre unbegrenzt.</div>
+          </td>
         </tr>
         <tr>
-          <td data-label="Linie / Ziel"><span class="transit-badge m-14">M 14</span> <span class="transit-badge m-12">M 12</span> <span class="transit-badge m-6">M 6</span> <span class="transit-badge rer-c">RER C</span></td>
-          <td data-label="Ticket-Typ"><label class="task-label"><input type="checkbox" class="app-check"> <em>Ticket Métro-Train-RER</em></label></td>
-          <td data-label="Wichtige Infos">5–6 Fahrten p.P. digital auf Smartphone laden. Gilt für Zentrum.</td>
+          <td data-label="Bereich"><strong>Stadt & Stadion</strong> (M14, M12, RER B/C)</td>
+          <td data-label="Option A"><label class="task-label"><input type="checkbox" class="app-check"> <strong>1× 10 Bahn-Tickets</strong> (25.50 €)</label><div style="font-size:7pt; color:#64748b; margin-top:2px;">Reicht exakt für alle geplanten Stadtfahrten & NFL-Matchday.</div></td>
         </tr>
         <tr>
-          <td data-label="Linie / Ziel"><strong>Musée du Louvre</strong></td>
-          <td data-label="Ticket-Typ"><label class="task-label"><input type="checkbox" class="app-check"> Online: <strong>ticket.louvre.fr</strong></label></td>
-          <td data-label="Wichtige Infos"><strong>10:00 Uhr Slot (Mo)</strong> buchen. Eingang <em>Carrousel du Louvre</em> nutzen.</td>
-        </tr>
-        <tr>
-          <td data-label="Linie / Ziel"><strong>NFL Game (Stade de France)</strong></td>
-          <td data-label="Ticket-Typ"><label class="task-label"><input type="checkbox" class="app-check"> Ticketmaster / NFL App</label></td>
-          <td data-label="Wichtige Infos"><span class="warning-tag">Stadionregel</span> Keine Rucksäcke > DIN A4! Im Hotel lassen.</td>
+          <td data-label="Bereich"><strong>NFL Game (Stade de France)</strong></td>
+          <td data-label="Option A" colspan="2"><label class="task-label"><input type="checkbox" class="app-check"> Ticketmaster / NFL OnePass App bereit halten</label> <span class="warning-tag" style="margin-left:6px;">Clear-Bag-Policy: Keine Taschen &gt; DIN A4!</span></td>
         </tr>
       </tbody>
     </table>
@@ -456,7 +453,7 @@
   <!-- SAMSTAG -->
   <div class="day-card">
     <div class="day-header">
-      <div class="day-title">Samstag: Ankunft, Notre-Dame, Seine & Eiffelturm</div>
+      <div class="day-title">Samstag: Ankunft, Seine, Eiffelturm & Dinner bei MELT Panthéon</div>
       <div class="day-badge"><span class="badge">Tag 1</span></div>
     </div>
 
@@ -475,7 +472,7 @@
           <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 11:00 – 13:30 Uhr</label> <span class="slot-text">· Notre-Dame & Lunch im Quartier Latin</span></div>
           <p class="activity-desc">
             Ab <em>Madeleine</em> mit <span class="transit-badge m-14">M 14</span> bis <em>Châtelet</em> (4 Min.) → Über die Seine zur <strong>Kathedrale Notre-Dame</strong>.<br>
-            <strong>Food-Spots in der Nähe:</strong> Authentisches französisches Bistro-Erlebnis im <a href="https://maps.apple.com/?q=Le+Petit+Chatelet+Paris" target="_blank" class="map-link">📍 Le Petit Châtelet</a> (Holzofen-Grill) oder grandioses, schnelles Streetfood bei <a href="https://maps.apple.com/?q=La+Droguerie+Paris+Marais" target="_blank" class="map-link">📍 La Droguerie</a> für eine herzhafte Crêpe.
+            <strong>Food-Spots in der Nähe:</strong> Authentisches Bistro-Erlebnis im <a href="https://maps.apple.com/?q=Le+Petit+Chatelet+Paris" target="_blank" class="map-link">📍 Le Petit Châtelet</a> (Holzofen-Grill) oder schnelles Streetfood bei <a href="https://maps.apple.com/?q=La+Droguerie+Paris+Marais" target="_blank" class="map-link">📍 La Droguerie</a> für eine herzhafte Crêpe.
           </p>
         </div>
 
@@ -483,15 +480,17 @@
           <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 14:00 – 17:30 Uhr</label> <span class="slot-text">· Eiffelturm & Arc de Triomphe</span></div>
           <p class="activity-desc">
             <span class="highlight-tag">Direktlinie</span> An Station <em>Saint-Michel</em> in den <span class="transit-badge rer-c">RER C</span> steigen → direkt bis <em>Champ de Mars Tour Eiffel</em> (10 Min.).<br>
-            Ab <em>Bir-Hakeim</em> mit <span class="transit-badge m-6">M 6</span> (Hochbahn) bis <em>Charles de Gaulle – Étoile</em> zur Besichtigung des <strong>Arc de Triomphe</strong>.
+            Ab <em>Bir-Hakeim</em> mit <span class="transit-badge m-6">M 6</span> (Hochbahn) bis <em>Charles de Gaulle – Étoile</em> zum <strong>Arc de Triomphe</strong>.<br>
+            Rückfahrt zum Hotel zum Frischmachen: <span class="transit-badge m-1">M 1</span> bis <em>Concorde</em>, umsteigen in <span class="transit-badge m-12">M 12</span> bis <em>Madeleine</em>.
           </p>
         </div>
 
         <div class="timeline-item">
-          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 18:00 – Open End</label> <span class="slot-text">· Rückweg & Dinner-Highlights</span></div>
+          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 18:30 – Open End</label> <span class="slot-text">· Dinner: MELT Panthéon & Drinks</span></div>
           <p class="activity-desc">
-            Mit <span class="transit-badge m-1">M 1</span> bis <em>Concorde</em>, in die <span class="transit-badge m-12">M 12</span> bis <em>Madeleine</em>.<br>
-            <strong>Dinner & Drinks:</strong> Geniales japanisches Udon auf der Rue Sainte-Anne bei <a href="https://maps.apple.com/?q=Sanukiya+Paris" target="_blank" class="map-link">📍 Sanukiya</a>. Danach könnt ihr den Tag im traditionellen <a href="https://maps.apple.com/?q=Le+Grand+Cafe+Capucines+Paris" target="_blank" class="map-link">📍 Le Grand Café Capucines</a> (nahe Opéra) bei einem perfekt gemixten Espresso Martini entspannt ausklingen lassen.
+            <strong>Anfahrt:</strong> Ab <em>Madeleine</em> mit <span class="transit-badge m-14">M 14</span> nach <em>Châtelet</em>, Umstieg in <span class="transit-badge rer-b">RER B</span> bis <strong>Luxembourg</strong> (ca. 15 Min.) → 3 Min. Fußweg.<br>
+            <strong>Dinner-Highlight:</strong> Legendäres texanisches Smoked BBQ (Brisket, Ribs & Pulled Pork) im <a href="https://maps.apple.com/?q=MELT+Pantheon+64+Rue+Monsieur+le+Prince+Paris" target="_blank" class="map-link">📍 MELT Panthéon</a> (64 Rue Monsieur le Prince).<br>
+            <strong>Rückweg:</strong> <span class="transit-badge rer-b">RER B</span> ab <em>Luxembourg</em> bis <em>Châtelet</em>, Umstieg in <span class="transit-badge m-14">M 14</span> bis <em>Madeleine</em>.
           </p>
         </div>
       </div>
@@ -507,7 +506,7 @@
             <div class="details-content">
               <ul>
                 <li><strong>Fassade & Rose:</strong> Die gotische Westfassade und das Rosettenfenster bestaunen.</li>
-                <li><strong>Point Zéro:</strong> Auf dem Domvorplatz ist der Bronzestern eingelassen – der Vermessungs-Nullpunkt Frankreichs.</li>
+                <li><strong>Point Zéro:</strong> Auf dem Domvorplatz ist der Bronzestern eingelassen – Nullpunkt Frankreichs.</li>
               </ul>
             </div>
           </details>
@@ -523,7 +522,7 @@
             <div class="details-content">
               <ul>
                 <li><strong>Fotospot Trocadéro:</strong> Bester symmetrischer Blick vom Place du Trocadéro.</li>
-                <li><strong>Glitzer-Beleuchtung:</strong> Ab Einbruch der Dunkelheit blinkt der Turm zu jeder vollen Stunde für 5 Minuten.</li>
+                <li><strong>Glitzer-Beleuchtung:</strong> Ab Dämmerung blinkt der Turm zu jeder vollen Stunde für 5 Minuten.</li>
               </ul>
             </div>
           </details>
@@ -535,26 +534,31 @@
       <div class="map-label">🗺️ WEG-ÜBERSICHT SAMSTAG:</div>
       <svg viewBox="0 0 700 130" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; font-family: -apple-system, sans-serif;">
         <rect width="700" height="130" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
-        <line x1="70" y1="50" x2="200" y2="50" stroke="#5291CE" stroke-width="5" stroke-linecap="round"/>
-        <line x1="200" y1="50" x2="310" y2="50" stroke="#662483" stroke-width="5" stroke-linecap="round"/>
-        <line x1="310" y1="50" x2="390" y2="85" stroke="#662483" stroke-width="4" stroke-dasharray="4,4"/>
-        <line x1="390" y1="85" x2="490" y2="85" stroke="#F2C500" stroke-width="5" stroke-linecap="round"/>
-        <line x1="490" y1="85" x2="590" y2="50" stroke="#75A886" stroke-width="5" stroke-linecap="round"/>
-        <line x1="590" y1="50" x2="650" y2="50" stroke="#FFCD00" stroke-width="5" stroke-linecap="round"/>
-        <circle cx="70" cy="50" r="8" fill="#5291CE" stroke="#ffffff" stroke-width="2"/>
-        <text x="70" y="30" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">CDG Airport</text>
-        <circle cx="200" cy="50" r="6" fill="#1e293b" stroke="#ffffff" stroke-width="2"/>
-        <text x="200" y="30" font-size="9" font-weight="600" fill="#334155" text-anchor="middle">Châtelet</text>
-        <circle cx="310" cy="50" r="9" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
-        <text x="310" y="24" font-size="10" font-weight="800" fill="#0284c7" text-anchor="middle">🏨 HOTEL</text>
-        <circle cx="390" cy="85" r="7" fill="#e11d48" stroke="#ffffff" stroke-width="2"/>
-        <text x="390" y="105" font-size="9.5" font-weight="700" fill="#e11d48" text-anchor="middle">Notre-Dame</text>
-        <circle cx="490" cy="85" r="8" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
-        <text x="490" y="105" font-size="10" font-weight="800" fill="#d97706" text-anchor="middle">🗼 Eiffelturm</text>
-        <circle cx="590" cy="50" r="8" fill="#059669" stroke="#ffffff" stroke-width="2"/>
-        <text x="590" y="26" font-size="9.5" font-weight="700" fill="#059669" text-anchor="middle">Arc Triomphe</text>
-        <circle cx="650" cy="50" r="7" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
-        <text x="650" y="30" font-size="9.5" font-weight="700" fill="#0284c7" text-anchor="middle">Hotel</text>
+        <line x1="60" y1="45" x2="160" y2="45" stroke="#5291CE" stroke-width="5" stroke-linecap="round"/>
+        <line x1="160" y1="45" x2="250" y2="45" stroke="#662483" stroke-width="5" stroke-linecap="round"/>
+        <line x1="250" y1="45" x2="330" y2="85" stroke="#662483" stroke-width="4" stroke-dasharray="4,4"/>
+        <line x1="330" y1="85" x2="420" y2="85" stroke="#F2C500" stroke-width="5" stroke-linecap="round"/>
+        <line x1="420" y1="85" x2="500" y2="45" stroke="#75A886" stroke-width="5" stroke-linecap="round"/>
+        <line x1="500" y1="45" x2="560" y2="45" stroke="#FFCD00" stroke-width="5" stroke-linecap="round"/>
+        <line x1="560" y1="45" x2="640" y2="85" stroke="#5291CE" stroke-width="5" stroke-linecap="round"/>
+        
+        <circle cx="60" cy="45" r="7" fill="#5291CE" stroke="#ffffff" stroke-width="2"/>
+        <text x="60" y="28" font-size="9" font-weight="700" fill="#0f172a" text-anchor="middle">CDG Airport</text>
+        
+        <circle cx="250" cy="45" r="8" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
+        <text x="250" y="26" font-size="9.5" font-weight="800" fill="#0284c7" text-anchor="middle">🏨 Hotel</text>
+        
+        <circle cx="330" cy="85" r="7" fill="#e11d48" stroke="#ffffff" stroke-width="2"/>
+        <text x="330" y="105" font-size="9" font-weight="700" fill="#e11d48" text-anchor="middle">Notre-Dame</text>
+        
+        <circle cx="420" cy="85" r="8" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
+        <text x="420" y="105" font-size="9.5" font-weight="800" fill="#d97706" text-anchor="middle">🗼 Eiffelturm</text>
+        
+        <circle cx="500" cy="45" r="7" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+        <text x="500" y="26" font-size="9" font-weight="700" fill="#059669" text-anchor="middle">Arc Triomphe</text>
+
+        <circle cx="640" cy="85" r="9" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
+        <text x="640" y="106" font-size="10" font-weight="800" fill="#dc2626" text-anchor="middle">🥩 MELT BBQ</text>
       </svg>
     </div>
   </div>
@@ -573,7 +577,7 @@
         <div class="timeline-item">
           <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 08:45 – 11:30 Uhr</label> <span class="slot-text">· Montmartre & Sacré-Cœur</span></div>
           <p class="activity-desc">
-            Ab <em>Madeleine</em> mit <span class="transit-badge m-12">M 12</span> direkt bis <em>Abbesses</em> (8 Min.). Aufzug nehmen, Place du Tertre & Basilika <strong>Sacré-Cœur</strong> erkunden.<br>
+            Ab <em>Madeleine</em> mit <span class="transit-badge m-12">M 12</span> direkt bis <em>Abbesses</em> (8 Min.). Aufzug oder Funiculaire-Seilbahn nehmen, Place du Tertre & Basilika <strong>Sacré-Cœur</strong> erkunden.<br>
             <strong>Frühstücks-Tipp:</strong> In der <a href="https://maps.apple.com/?q=Le+Grenier+a+Pain+Abbesses+Paris" target="_blank" class="map-link">📍 Boulangerie Le Grenier à Pain</a> (Rue des Abbesses) ein Baguette oder Croissant holen.
           </p>
         </div>
@@ -593,7 +597,7 @@
             Über die <a href="https://maps.apple.com/?q=Passerelle+Pleyel+Saint-Denis" target="_blank" class="map-link">📍 Passerelle Pleyel</a> zu Fuß direkt zum Stadion (ca. 10 Min.).<br><br>
             <strong>🏈 Stadion- & Matchday-Logistik:</strong><br>
             • <strong>Pre-Game:</strong> Ab 12:00 Uhr laufen die offiziellen Fan-Zones direkt auf dem Vorplatz.<br>
-            • <strong>Einlass & Sicherheit:</strong> Strikte <em>Clear-Bag-Policy</em>. Taschen > DIN A4 werden abgewiesen. Eingang siehe Ticket.<br>
+            • <strong>Einlass & Sicherheit:</strong> Strikte <em>Clear-Bag-Policy</em>. Taschen &gt; DIN A4 werden abgewiesen.<br>
             • <strong>Cashless:</strong> Das Stadion ist 100% bargeldlos.<br><br>
             <strong>Rückfahrt:</strong> Mit <span class="transit-badge m-14">M 14</span> direkt nach <em>Madeleine</em> (12 Min.).
           </p>
@@ -664,59 +668,44 @@
   <!-- MONTAG -->
   <div class="day-card">
     <div class="day-header">
-      <div class="day-title">Montag: Louvre, Galeries Lafayette & Rückflug</div>
+      <div class="day-title">Montag: Opéra Garnier, Galeries Lafayette & Rückflug</div>
       <div class="day-badge"><span class="badge">Tag 3</span></div>
     </div>
 
     <div class="content-table">
       <div class="timeline-col">
         <div class="timeline-item">
-          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 08:30 – 09:30 Uhr</label> <span class="slot-text">· Check-out</span></div>
-          <p class="activity-desc">Frühstück im Hotel, auschecken und Rucksäcke an der Hotelrezeption lagern.</p>
+          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 09:00 – 10:00 Uhr</label> <span class="slot-text">· Check-out</span></div>
+          <p class="activity-desc">Entspanntes Frühstück im Hotel, Check-out und Rucksäcke direkt an der Rezeption zur Aufbewahrung deponieren.</p>
         </div>
 
         <div class="timeline-item">
-          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 09:40 – 13:00 Uhr</label> <span class="slot-text">· Musée du Louvre (10:00 Slot)</span></div>
+          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 10:15 – 13:00 Uhr</label> <span class="slot-text">· Opéra Garnier & Palais-Royal Spaziergang</span></div>
           <p class="activity-desc">
-            Ab <em>Madeleine</em> mit <span class="transit-badge m-14">M 14</span> bis <em>Pyramides</em> (2 Min.).<br>
-            <strong>Geheim-Eingang:</strong> Unterirdisch via <a href="https://maps.apple.com/?q=Carrousel+du+Louvre+Paris" target="_blank" class="map-link">📍 Carrousel du Louvre</a> (Rue de Rivoli 99 – kürzere Wartezeiten).
+            Zu Fuß vom Hotel zur prächtigen <a href="https://maps.apple.com/?q=Palais+Garnier+Paris" target="_blank" class="map-link">📍 Opéra Garnier</a> (5 Min.).<br>
+            Weiterer gemütlicher Spaziergang über die Rue de la Paix / Place Vendôme hinunter zum Innenhof des <strong>Palais-Royal</strong> mit den gestreiften Buren-Säulen.<br>
+            <strong>Lunch-Tipp:</strong> Schnelle, grandiose Udon-Nudeln im <a href="https://maps.apple.com/?q=Sanukiya+Paris" target="_blank" class="map-link">📍 Sanukiya</a> (Rue Sainte-Anne).
           </p>
         </div>
 
         <div class="timeline-item">
-          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 13:15 – 16:30 Uhr</label> <span class="slot-text">· Palais-Royal & Galeries Lafayette</span></div>
+          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 13:30 – 16:30 Uhr</label> <span class="slot-text">· Galeries Lafayette & Dachterrasse</span></div>
           <p class="activity-desc">
-            Säulenhof <strong>Palais-Royal</strong> & Lunch. 12 Min. Spaziergang über Opéra zu den <a href="https://maps.apple.com/?q=Galeries+Lafayette+Haussmann+Paris" target="_blank" class="map-link">📍 Galeries Lafayette</a>.<br>
-            3 Min. Fußweg zum Hotel, Rucksäcke abholen.
+            Spaziergang zu den <a href="https://maps.apple.com/?q=Galeries+Lafayette+Haussmann+Paris" target="_blank" class="map-link">📍 Galeries Lafayette Haussmann</a>.<br>
+            Jugendstil-Glaskuppel bestaunen und kostenlos mit der Rolltreppe auf die <strong>Dachterrasse (7. OG)</strong> für einen genialen Blick über die Dächer von Paris und den Eiffelturm.<br>
+            Gegen 16:30 Uhr 3 Min. zu Fuß zurück zum Hotel, Rucksäcke abholen.
           </p>
         </div>
 
         <div class="timeline-item">
-          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 16:45 – 19:55 Uhr</label> <span class="slot-text">· Transfer & Rückflug</span></div>
+          <div class="time-slot"><label class="task-label"><input type="checkbox" class="app-check"> 16:45 – 19:55 Uhr</label> <span class="slot-text">· Transfer & Rückflug ZRH</span></div>
           <p class="activity-desc">
-            Ab <em>Madeleine</em> mit <span class="transit-badge m-14">M 14</span> nach <em>Châtelet</em> (4 Min.) → Umstieg in <span class="transit-badge rer-b">RER B</span> zum CDG Airport (35 Min.). Abflug 19:55 Uhr.
+            Ab <em>Madeleine</em> mit <span class="transit-badge m-14">M 14</span> nach <em>Châtelet</em> (4 Min.) → Umstieg in <span class="transit-badge rer-b">RER B</span> direkt zum Flughafen CDG (ca. 35 Min.). Abflug nach Zürich um 19:55 Uhr.
           </p>
         </div>
       </div>
 
       <div class="landmark-col">
-        <div class="landmark-box">
-          <div class="landmark-img-wrap">
-            <img src="louvre.jpeg" alt="Musée du Louvre" loading="lazy">
-          </div>
-          <div class="landmark-title">Musée du Louvre</div>
-          <details class="details-box">
-            <summary>Must-Sees</summary>
-            <div class="details-content">
-              <ul>
-                <li><strong>Mona Lisa:</strong> Im Denon-Flügel (Saal 711). Direkt am Morgen ansteuern!</li>
-                <li><strong>Venus von Milo:</strong> Sully-Flügel, Saal 345.</li>
-                <li><strong>Nike von Samothrake:</strong> Daru-Treppe (Denon-Flügel).</li>
-              </ul>
-            </div>
-          </details>
-        </div>
-        
         <div class="landmark-box">
           <div class="landmark-img-wrap">
             <img src="lafayette.jpeg" alt="Galeries Lafayette" loading="lazy">
@@ -726,8 +715,24 @@
             <summary>Highlights</summary>
             <div class="details-content">
               <ul>
-                <li><strong>Jugendstil-Glaskuppel:</strong> Die historische "Coupole" von 1912.</li>
-                <li><strong>Kostenlose Dachterrasse (7. OG):</strong> Toller Panoramablick auf die Opéra Garnier und den Eiffelturm.</li>
+                <li><strong>Coupole:</strong> Historische Jugendstil-Glaskuppel von 1912.</li>
+                <li><strong>Dachterrasse (7. OG):</strong> Kostenloser Weitblick über die Opéra Garnier und den Eiffelturm.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+
+        <div class="landmark-box">
+          <div class="landmark-img-wrap">
+            <img src="opera.jpeg" alt="Opéra Garnier" loading="lazy">
+          </div>
+          <div class="landmark-title">Opéra Garnier</div>
+          <details class="details-box">
+            <summary>Highlights</summary>
+            <div class="details-content">
+              <ul>
+                <li><strong>Neobarock-Palast:</strong> Berühmteste Opernbühne der Welt und Kulisse für das Phantom der Oper.</li>
+                <li><strong>Place de l'Opéra:</strong> Idealer Ausgangspunkt für den Spaziergang.</li>
               </ul>
             </div>
           </details>
@@ -739,19 +744,29 @@
       <div class="map-label">🗺️ WEG-ÜBERSICHT MONTAG:</div>
       <svg viewBox="0 0 700 120" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; font-family: -apple-system, sans-serif;">
         <rect width="700" height="120" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
-        <line x1="70" y1="55" x2="180" y2="55" stroke="#662483" stroke-width="5" stroke-linecap="round"/>
-        <line x1="180" y1="55" x2="300" y2="55" stroke="#64748b" stroke-width="3" stroke-dasharray="4,3"/>
-        <line x1="300" y1="55" x2="430" y2="55" stroke="#64748b" stroke-width="3" stroke-dasharray="4,3"/>
-        <line x1="430" y1="55" x2="530" y2="55" stroke="#64748b" stroke-width="3" stroke-dasharray="4,3"/>
-        <line x1="530" y1="55" x2="630" y2="55" stroke="#5291CE" stroke-width="5" stroke-linecap="round"/>
-        <circle cx="70" cy="55" r="7" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
-        <text x="70" y="32" font-size="9" font-weight="700" fill="#0284c7" text-anchor="middle">🏨 Hotel</text>
-        <circle cx="180" cy="55" r="9" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
-        <text x="180" y="30" font-size="10" font-weight="800" fill="#d97706" text-anchor="middle">🎨 Louvre (10h)</text>
-        <circle cx="430" cy="55" r="8" fill="#059669" stroke="#ffffff" stroke-width="2"/>
-        <text x="430" y="30" font-size="9.5" font-weight="800" fill="#059669" text-anchor="middle">🛍️ Lafayette</text>
-        <circle cx="630" cy="55" r="8" fill="#5291CE" stroke="#ffffff" stroke-width="2"/>
-        <text x="630" y="30" font-size="9.5" font-weight="800" fill="#5291CE" text-anchor="middle">✈️ CDG Airport</text>
+        <line x1="80" y1="60" x2="200" y2="60" stroke="#64748b" stroke-width="3" stroke-dasharray="4,3"/>
+        <line x1="200" y1="60" x2="330" y2="60" stroke="#64748b" stroke-width="3" stroke-dasharray="4,3"/>
+        <line x1="330" y1="60" x2="450" y2="60" stroke="#64748b" stroke-width="3" stroke-dasharray="4,3"/>
+        <line x1="450" y1="60" x2="550" y2="60" stroke="#662483" stroke-width="5" stroke-linecap="round"/>
+        <line x1="550" y1="60" x2="640" y2="60" stroke="#5291CE" stroke-width="5" stroke-linecap="round"/>
+        
+        <circle cx="80" cy="60" r="7" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
+        <text x="80" y="38" font-size="9" font-weight="700" fill="#0284c7" text-anchor="middle">🏨 Hotel</text>
+        
+        <circle cx="200" cy="60" r="8" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
+        <text x="200" y="38" font-size="9" font-weight="700" fill="#d97706" text-anchor="middle">Opéra Garnier</text>
+        
+        <circle cx="330" cy="60" r="8" fill="#e11d48" stroke="#ffffff" stroke-width="2"/>
+        <text x="330" y="38" font-size="9" font-weight="700" fill="#e11d48" text-anchor="middle">Palais-Royal</text>
+        
+        <circle cx="450" cy="60" r="9" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+        <text x="450" y="38" font-size="9.5" font-weight="800" fill="#059669" text-anchor="middle">🛍️ Lafayette</text>
+        
+        <circle cx="550" cy="60" r="6" fill="#1e293b" stroke="#ffffff" stroke-width="2"/>
+        <text x="550" y="80" font-size="8.5" font-weight="600" fill="#334155" text-anchor="middle">Châtelet</text>
+
+        <circle cx="640" cy="60" r="8" fill="#5291CE" stroke="#ffffff" stroke-width="2"/>
+        <text x="640" y="38" font-size="9.5" font-weight="800" fill="#5291CE" text-anchor="middle">✈️ CDG Airport</text>
       </svg>
     </div>
   </div>
